@@ -1,11 +1,13 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <nav className="fixed w-full">
+      <div className="w-full h-28 relative z-10">
         <Navbar />
-      </nav>
+      </div>
+      <Outlet />
     </>
   );
 }
