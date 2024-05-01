@@ -15,7 +15,7 @@ const AboutUs = () => {
           />
         </div>
         <div className="lg:w-1/2 font-inter text-center lg:text-left space-y-4">
-          <h3 className="font-bold text-orange-500">About Us</h3>
+          <h3 className="font-bold text-[#FF3811]">About Us</h3>
           <h2 className="text-4xl font-bold">
             We are qualified & of experience in this field
           </h2>
@@ -30,7 +30,7 @@ const AboutUs = () => {
             humour, or randomised words which don't look even slightly
             believable.
           </p>
-          <button className="btn bg-orange-500 rounded-none text-white">
+          <button className="btn bg-[#FF3811] rounded-none text-white">
             Get More Info
           </button>
         </div>

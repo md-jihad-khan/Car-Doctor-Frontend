@@ -9,7 +9,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-orange-500 font-bold" : ""
+            isActive ? "text-[#FF3811] font-bold" : ""
           }
           to={"/"}
         >
@@ -19,7 +19,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-orange-500 font-bold" : ""
+            isActive ? "text-[#FF3811] font-bold" : ""
           }
           to={"/about"}
         >
@@ -29,7 +29,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-orange-500 font-bold" : ""
+            isActive ? "text-[#FF3811] font-bold" : ""
           }
           to={"/services"}
         >
@@ -39,7 +39,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-orange-500 font-bold" : ""
+            isActive ? "text-[#FF3811] font-bold" : ""
           }
           to={"/blog"}
         >
@@ -49,7 +49,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-orange-500 font-bold" : ""
+            isActive ? "text-[#FF3811] font-bold" : ""
           }
           to={"/contact"}
         >
@@ -60,7 +60,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed w-full">
+    <div className="fixed w-full bg-base-100">
       <div className="navbar bg-base-100 md:w-10/12 mx-auto font-inter py-3 ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -100,7 +100,7 @@ const Navbar = () => {
           <FaSearch />
           <Link
             to={"/appointment"}
-            className="btn btn-outline text-orange-500 font-inter"
+            className="btn btn-outline text-[#FF3811] font-inter"
           >
             Appointment
           </Link>

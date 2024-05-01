@@ -1,14 +1,21 @@
+import { FaArrowRight } from "react-icons/fa";
+
 const ServiceCard = ({ service }) => {
   return (
-    <div className="card  bg-base-100 shadow-xl">
-      <figure className="px-10 pt-10">
-        <img src={service.img} className="rounded-xl" />
+    <div className="card  bg-base-100 border">
+      <figure className="p-4">
+        <img
+          src={service.img}
+          className="rounded-xl w-full h-52 object-cover"
+        />
       </figure>
-      <div className="card-body items-center text-center">
-        <h2 className="card-title">{service.title}</h2>
-        <p>Price: ${service.price}</p>
-        <div className="card-actions">
-          <button className="btn btn-primary">=></button>
+      <div className="card-body pt-0 p-4 font-inter">
+        <h2 className=" font-bold text-2xl">{service.title}</h2>
+        <div className="card-actions font-bold text-[#FF3811]">
+          <p>Price: ${service.price}</p>{" "}
+          <button className="">
+            <FaArrowRight />
+          </button>
         </div>
       </div>
     </div>
