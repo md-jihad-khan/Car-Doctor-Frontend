@@ -2,8 +2,18 @@ import { FaSearch, FaShoppingBag } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const navLinks = (
     <>
       <li>
@@ -26,36 +36,29 @@ const Navbar = () => {
           About
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-[#FF3811] font-bold" : ""
-          }
-          to={"/services"}
-        >
-          Services
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-[#FF3811] font-bold" : ""
-          }
-          to={"/blog"}
-        >
-          Blog
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-[#FF3811] font-bold" : ""
-          }
-          to={"/contact"}
-        >
-          Contact
-        </NavLink>
-      </li>
+
+      {user?.email ? (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-[#FF3811] font-bold" : ""
+              }
+              to="/bookings"
+            >
+              My Bookings
+            </NavLink>
+          </li>
+          <li>
+            <button onClick={handleLogOut}>Log out</button>
+          </li>
+        </>
+      ) : (
+        <li>
+          {" "}
+          <Link to="/login">Login</Link>{" "}
+        </li>
+      )}
     </>
   );
 

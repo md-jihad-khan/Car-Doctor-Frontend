@@ -3,6 +3,8 @@ import App from "../App";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Checkout from "../pages/Checkout";
+import Bookings from "../pages/Bookings";
 
 const Router = createBrowserRouter([
   {
@@ -20,6 +22,16 @@ const Router = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "checkout/:id",
+        element: <Checkout />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
+      },
+      {
+        path: "bookings",
+        element: <Bookings />,
       },
     ],
   },
