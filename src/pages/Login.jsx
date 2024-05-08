@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginimg from "../assets/images/login/login.svg";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { signIn, googleLogin, reload, setReload } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,7 +17,8 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     signIn(email, password)
-      .then(() => {
+      .then((result) => {
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -26,7 +29,8 @@ const Login = () => {
         return setReload(!reload);
       })
       .catch((error) => {
-        if (error.message) {
+        console.log(error.message);
+        if (error.message == "Firebase: Error (auth/invalid-credential).") {
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -38,6 +42,20 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
+        const loggedInUser = result.user;
+        const email = loggedInUser.email;
+        axios
+          .post(
+            "http://localhost:5000/jwt",
+            { email },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            if (res.data.success) {
+              navigate(location?.state ? location.state : "/");
+            }
+          });
+
         Swal.fire({
           icon: "success",
           title: "Google Login Successful",
@@ -46,11 +64,7 @@ const Login = () => {
         });
       })
       .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Google Login Failed",
-        });
+        console.log(error);
       });
   };
 
